@@ -6,28 +6,34 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/constance";
+import { resetFeed } from "../utils/feedSlice";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError]= useState("")
   const [emailId, setEmailId] = useState("User@gmail.com");
   const [password, setPassword] = useState("Raut@2000");
   const dispatch = useDispatch()
   const navigate = useNavigate()
-    
+  
+  
   const handleLogin = async (e) => {
-      e.preventDefault(); // ✅ Prevent form from reloading
-      try {
-        const res = await axios.post( BASE_URL + "/login" , {
-          emailId,
-          password,
-        }, {withCredentials: true});
-        // console.log(res.data);
-        dispatch(addUser(res.data))
-        return navigate("/")
-      } catch (error) {
-        console.log("Login Error:", error.response?.data || error.message);
+    e.preventDefault(); // ✅ Prevent form from reloading
+    try {
+      const res = await axios.post( BASE_URL + "/login" , {
+        emailId,
+        password,
+      }, {withCredentials: true});
+      // console.log(res.data);
+      dispatch(resetFeed())
+      dispatch(addUser(res?.data))
+
+      return navigate("/")
+    } catch (error) {
+        setError(error?.response?.data || "Something went wrong")
+        // console.log("Login Error:", error.response?.data || error.message);
       }
     };
     
@@ -96,7 +102,7 @@ const Login = () => {
                       Forgot password?
                     </a>
                   </div>
-
+                  <p className="text-red-500">{error}</p>
                   {/* Login Button */}
                   <button
                     
@@ -110,9 +116,9 @@ const Login = () => {
                 {/* Signup Link */}
                 <p className="text-sm text-center text-gray-400 mt-4">
                   Don’t have an account?{" "}
-                  <a href="#" className="text-blue-400 hover:underline">
+                  <Link to="/signup" className="text-blue-400 hover:underline">
                     Sign up now
-                  </a>
+                  </Link>
                 </p>
               </div>
             </div>
