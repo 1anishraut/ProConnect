@@ -12,10 +12,9 @@ const Profile = () => {
   return (
     <div>
       {user && (
-        
+
           <EditProfile  />
-          
-        
+
       )}
     </div>
   );

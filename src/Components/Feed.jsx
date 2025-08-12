@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { BASE_URL } from "../utils/constance";
+import { BASE_URL } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { addFeed, removeFeed } from "../utils/feedSlice";
 import UserCard from "./UserCard";
@@ -58,9 +58,9 @@ const Feed = () => {
   return (
     <>
       {feed && (
-        <div className="min-h-screen flex items-center justify-center bg-gray-900">
+       
           <UserCard userData={feed[0]} handleSendRequest ={handleSendRequest}  />
-        </div>
+        
       )}
     </>
   );

@@ -9,6 +9,7 @@ import appStore from "./utils/appStore";
 import Connections from "./Components/Connections";
 import Requests from "./Components/Requests";
 import Signup from "./Components/Signup";
+import Chat from "./Components/Chat";
 
 function App() {
   return (
@@ -21,7 +22,10 @@ function App() {
             <Route path="/profile" element={<Profile />}></Route>
             <Route path="/connections" element={<Connections />}></Route>
             <Route path="/requests" element={<Requests />} ></Route>
-            <Route path="/signup" element={<Signup/>}> </Route>
+            <Route path="/signup" element={<Signup />}> </Route>
+            <Route path="/signup" element={<Signup />}> </Route>
+            <Route path="/signup" element={<Signup />}> </Route>
+            <Route path="/chat/:targetUserId" element={<Chat/>}></Route>
           </Route>
         </Routes>
       </BrowserRouter>
