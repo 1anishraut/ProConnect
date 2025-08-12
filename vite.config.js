@@ -5,6 +5,7 @@ import tailwindcss from "@tailwindcss/vite";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
+  base: './', // ✅ Use relative paths for assets
   server: {
     host: true, // <-- allow external access
     port: 5173, // optional: set a fixed port
